@@ -159,7 +159,7 @@ namespace Universal_Trade_Hub
 			Text.Font = GameFont.Small;
 
 			float viewWidth = settingsAreaRect.width - 30f;
-			float viewHeight = settingsAreaRect.height + 100f;
+			float viewHeight = settingsAreaRect.height + 200f;
 
 			Rect outRect = new Rect((settingsAreaRect.width - viewWidth) / 2f, settingsAreaRect.yMin - 30f, viewWidth + 30f, settingsAreaRect.height / 2 + 100f);
 			Rect viewRect = new Rect(outRect.x, outRect.y, viewWidth, viewHeight);
@@ -241,8 +241,8 @@ namespace Universal_Trade_Hub
 			innerListing.Gap(25f);
 
 			Rect sliderRect12 = innerListing.GetRect(22f);
-			settings.attackChance = Widgets.HorizontalSlider(sliderRect12, settings.attackChance, 0f, 1.5f, true, "UTH_attackChanceLabel".Translate() + ": " + settings.attackChance.ToString("P0"), "0%", "150%");
-			TooltipHandler.TipRegion(sliderRect12, "UTH_attackChanceTooltip".Translate());
+			settings.attackChance = Widgets.HorizontalSlider(sliderRect12, settings.attackChance, 0f, 1.5f, true, "UTH_AttackChanceLabel".Translate() + ": " + settings.attackChance.ToString("P0"), "0%", "150%");
+			TooltipHandler.TipRegion(sliderRect12, "UTH_AttackChanceTooltip".Translate());
 
 			innerListing.Gap(25f);
 

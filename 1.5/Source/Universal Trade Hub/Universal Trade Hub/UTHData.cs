@@ -54,11 +54,13 @@ namespace Universal_Trade_Hub
 		public List<ScheduledOrderData> ScheduledOrders => scheduledOrders;
 
 		private float attackChance = UTH_Mod.settings.attackChance;
+		private int nextAttackCheckTick;
 
 		private HashSet<ScheduledOrderData> ordersToRemove = new HashSet<ScheduledOrderData>();
 
 		public UTH_WorldComponent_OrderScheduler(World world) : base(world)
 		{
+			nextAttackCheckTick = Find.TickManager.TicksGame + GenDate.TicksPerDay;
 		}
 
 		public override void ExposeData()
@@ -102,19 +104,23 @@ namespace Universal_Trade_Hub
 					Messages.Message("UTH_OrderDestinationInvalid".Translate(), MessageTypeDefOf.SilentInput, historical: false);
 					deliveredOrders.Add(order);
 				}
-				else if (Rand.Chance(attackChance))
+				else if (Find.TickManager.TicksGame >= nextAttackCheckTick && Rand.Chance(attackChance))
 				{
 					if (order.insuranceChecked)
 					{
 						UTH_UIData.systemAlert1.PlayOneShotOnCamera();
 						RefundOrder(order, true);
 						Messages.Message("UTH_OrderAttackedAndRefunded".Translate(), MessageTypeDefOf.SilentInput, historical: false);
+						deliveredOrders.Add(order);
 					}
 					else
 					{
 						UTH_UIData.systemAlert1.PlayOneShotOnCamera();
 						Messages.Message("UTH_OrderAttackedAndLost".Translate(), MessageTypeDefOf.SilentInput, historical: false);
+						deliveredOrders.Add(order);
 					}
+
+					nextAttackCheckTick = Find.TickManager.TicksGame + GenDate.TicksPerDay;
 				}
 				else if (Find.TickManager.TicksGame >= order.deliveryTick)
 				{
