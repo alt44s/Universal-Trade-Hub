@@ -705,12 +705,15 @@ namespace Universal_Trade_Hub
 		private Vector2 scrollPosition = Vector2.zero;
 		private Vector2 selectedItemsScrollPosition = Vector2.zero;
 		private List<ThingDef> items;
+		private List<ThingDef> filteredItems;
 		private readonly Dictionary<ThingDef, int> itemCounts;
 		private string searchText = "";
 
 		private float totalPrice = 0f;
 		private float totalTax = 0f;
 		public float taxRate = UTH_Mod.settings.taxRate;
+
+		private const float ItemHeight = 40f;
 
 		public UTH_OrderMenu(int categoryIndex)
 		{
@@ -737,6 +740,8 @@ namespace Universal_Trade_Hub
 					itemCounts[item] = 0;
 				}
 			}
+
+			FilterItems();
 		}
 
 		public override Vector2 InitialSize => new Vector2(900f, 600f);
@@ -754,25 +759,28 @@ namespace Universal_Trade_Hub
 			float itemsStartY = inRect.y + padding;
 
 			Rect searchRect = new Rect(itemsStartX, itemsStartY, itemsWidth, 30f);
-			searchText = Widgets.TextField(searchRect, searchText);
+			string newSearchText = Widgets.TextField(searchRect, searchText);
+			if (newSearchText != searchText)
+			{
+				searchText = newSearchText;
+				FilterItems();
+			}
 
 			Rect scrollViewRect = new Rect(itemsStartX, searchRect.yMax, itemsWidth, itemsHeight);
-			Rect scrollContentRect = new Rect(0f, 0f, scrollViewRect.width - 20f, items.Count * 40f);
+			Rect scrollContentRect = new Rect(0f, 0f, scrollViewRect.width - 20f, items.Count * ItemHeight);
 
 			Widgets.DrawBoxSolid(scrollViewRect, UTH_UIUtility.itemsMenuBGColor);
 			Widgets.BeginScrollView(scrollViewRect, ref scrollPosition, scrollContentRect);
 
-			float y = 0f;
-			foreach (var item in items)
-			{
-				if (!string.IsNullOrEmpty(searchText) && !item.label.ToLower().Contains(searchText.ToLower()))
-				{
-					continue;
-				}
+			int firstVisibleIndex = Mathf.Max(0, Mathf.FloorToInt(scrollPosition.y / ItemHeight));
+			int lastVisibleIndex = Mathf.Min(filteredItems.Count, Mathf.CeilToInt((scrollPosition.y + itemsHeight) / ItemHeight));
 
-				Rect itemRect = new Rect(0f, y, scrollContentRect.width, 40f);
-				DrawItemRow(itemRect, item);
-				y += 40f;
+			float y = firstVisibleIndex * ItemHeight;
+			for (int i = firstVisibleIndex; i < lastVisibleIndex; i++)
+			{
+				Rect itemRect = new Rect(0f, y, scrollContentRect.width, ItemHeight);
+				DrawItemRow(itemRect, filteredItems[i]);
+				y += ItemHeight;
 			}
 
 			Widgets.EndScrollView();
@@ -891,6 +899,21 @@ namespace Universal_Trade_Hub
 			items = DefDatabase<ThingDef>.AllDefsListForReading
 				.Where(d => IsItemInSelectedCategory(d))
 				.ToList();
+		}
+
+		private void FilterItems()
+		{
+			if (string.IsNullOrEmpty(searchText))
+			{
+				filteredItems = new List<ThingDef>(items);
+			}
+			else
+			{
+				string lowerSearchText = searchText.ToLower();
+				filteredItems = items
+					.Where(item => item.label.ToLower().Contains(lowerSearchText))
+					.ToList();
+			}
 		}
 
 		private bool IsItemInSelectedCategory(ThingDef item)
