@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<JobDef>
+		<defName>UseUTConsole</defName>
+		<driverClass>Universal_Trade_Hub.JobDriver_UseUTConsole</driverClass>
+		<reportString>using trade console.</reportString>
+	</JobDef>
+</Defs>

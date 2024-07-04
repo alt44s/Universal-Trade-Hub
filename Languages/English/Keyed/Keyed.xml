@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+  <!-- Misc -->
+  <UTH_ConnectToUniversalTradeHub>Connect to Universal Trade Hub</UTH_ConnectToUniversalTradeHub>
+  <UTH_OrderDestinationInvalid>Order could not be delivered: Destination invalid.</UTH_OrderDestinationInvalid>
+  <UTH_OrderDelivered>Your order has been delivered.</UTH_OrderDelivered>
+  <UTH_OrderAttackedAndRefunded>Your order was attacked, but since you had insurance, your money has been refunded.</UTH_OrderAttackedAndRefunded>
+  <UTH_OrderAttackedAndLost>Your order was attacked and lost. Unfortunately, you did not have insurance.</UTH_OrderAttackedAndLost>
+  <UTH_OrderCancelledAndRefunded>Your order has been cancelled and a refund has been processed.</UTH_OrderCancelledAndRefunded>
+  <UTH_SubExpired>Your UTH subscription has expired. You may choose a new plan at any Universal Trade Console to continue your service.</UTH_SubExpired>
+  <UTH_SubCancelled>You have cancelled your UTH subscription.</UTH_SubCancelled>
+  
+  <!-- ModSettings -->
+  <UTH_OrderSettings>Order Settings</UTH_OrderSettings>
+  
+  <UTH_EnableInitAnim>Enable console init animation</UTH_EnableInitAnim>
+  
+  <UTH_TaxRateLabel>Tax Rate</UTH_TaxRateLabel>
+  <UTH_TaxRateTooltip>Adjust the tax rate applied to transactions.</UTH_TaxRateTooltip>
+  <UTH_ExpressDeliveryBaseCostLabel>Express Delivery Base Cost</UTH_ExpressDeliveryBaseCostLabel>
+  <UTH_ExpressDeliveryBaseCostTooltip>Base cost for express delivery service.</UTH_ExpressDeliveryBaseCostTooltip>
+  <UTH_ExpressDeliveryMultiplierPerKgLabel>Express Delivery Multiplier per Kg</UTH_ExpressDeliveryMultiplierPerKgLabel>
+  <UTH_ExpressDeliveryMultiplierPerKgTooltip>Multiplier applied to express delivery cost per kilogram of ordered items.</UTH_ExpressDeliveryMultiplierPerKgTooltip>
+  <UTH_ExpressDeliveryTimeReductionLabel>Express Delivery Time Reduction</UTH_ExpressDeliveryTimeReductionLabel>
+  <UTH_ExpressDeliveryTimeReductionTooltip>Reduction in delivery time for express deliveries.</UTH_ExpressDeliveryTimeReductionTooltip>
+  <UTH_InsuranceBaseCostLabel>Insurance Base Cost</UTH_InsuranceBaseCostLabel>
+  <UTH_InsuranceBaseCostTooltip>Base cost for insurance coverage.</UTH_InsuranceBaseCostTooltip>
+  <UTH_InsuranceMultiplierLabel>Insurance Multiplier</UTH_InsuranceMultiplierLabel>
+  <UTH_InsuranceMultiplierTooltip>Multiplier applied to insurance cost (per item).</UTH_InsuranceMultiplierTooltip>
+  <UTH_DeliveryTimePerKgLabel>Delivery Time per Kg</UTH_DeliveryTimePerKgLabel>
+  <UTH_DeliveryTimePerKgTooltip>Additional delivery time per kilogram of goods.</UTH_DeliveryTimePerKgTooltip>
+  <UTH_DeliveryTimeReductionForStuffLabel>Delivery Time Reduction for Stuff</UTH_DeliveryTimeReductionForStuffLabel>
+  <UTH_DeliveryTimeReductionForStuffTooltip>Reduction in delivery time for materials.</UTH_DeliveryTimeReductionForStuffTooltip>
+  <UTH_PriceReductionMultiplierLabel>Price Reduction Multiplier</UTH_PriceReductionMultiplierLabel>
+  <UTH_PriceReductionMultiplierTooltip>Adjusts the multiplier for price reductions.</UTH_PriceReductionMultiplierTooltip>
+  <UTH_WealthMultiplierLabel>Wealth Multiplier</UTH_WealthMultiplierLabel>
+  <UTH_WealthMultiplierTooltip>Adjusts the multiplier for wealth calculations.</UTH_WealthMultiplierTooltip>
+  <UTH_BaseSubscriptionPriceLabel>Base Subscription Price</UTH_BaseSubscriptionPriceLabel>
+  <UTH_BaseSubscriptionPriceTooltip>Specifies the base price for subscriptions.</UTH_BaseSubscriptionPriceTooltip>
+  <UTH_AttackChanceLabel>Attack Chance</UTH_AttackChanceLabel>
+  <UTH_AttackChanceTooltip>Probability of an order getting attacked and lost.</UTH_AttackChanceTooltip>
+  
+  <UTH_CreditsTranslation>Translation:</UTH_CreditsTranslation>
+  <UTH_CreditsTranslation2>Your name here!</UTH_CreditsTranslation2>
+
+  <!-- Button Labels -->
+  <UTH_Order>Order</UTH_Order>
+  <UTH_ActiveOrders>Active Orders</UTH_ActiveOrders>
+  <UTH_Shutdown>Shutdown</UTH_Shutdown>
+  <UTH_Subscription>Subscription</UTH_Subscription>
+  <UTH_Back>Back</UTH_Back>
+  <UTH_PlaceOrder>Place Order</UTH_PlaceOrder>
+  <UTH_Cancel>Cancel</UTH_Cancel>
+  <UTH_Info>Info</UTH_Info>
+  <UTH_Reset>Reset</UTH_Reset>
+  <UTH_AddToOrder>Add to Order</UTH_AddToOrder>
+
+  <!-- Initialization Steps -->
+  <UTH_LoadingSystemConfig>Loading system configuration...</UTH_LoadingSystemConfig>
+  <UTH_AttuningFrequency>Attuning frequency...</UTH_AttuningFrequency>
+  <UTH_ConnectingTradeNetwork>Connecting to trade network...</UTH_ConnectingTradeNetwork>
+  <UTH_LoadingMarketData>Loading market data...</UTH_LoadingMarketData>
+  <UTH_SettingUpInterface>Setting up interface...</UTH_SettingUpInterface>
+  <UTH_Initializing>Initializing...</UTH_Initializing>
+
+  <!-- Trading Mottos -->
+  <UTH_TradingMotto1>Trading the future, retroactively.</UTH_TradingMotto1>
+  <UTH_TradingMotto2>Bringing uncertainty to you, reliably!</UTH_TradingMotto2>
+  <UTH_TradingMotto3>Innovating stability, disruptively.</UTH_TradingMotto3>
+  <UTH_TradingMotto4>Maximizing volatility, predictably.</UTH_TradingMotto4>
+  <UTH_TradingMotto5>Selling risk, riskily.</UTH_TradingMotto5>
+  <UTH_TradingMotto6>Futurizing the past, forwardly.</UTH_TradingMotto6>
+  <UTH_TradingMotto7>Leveraging chaos, harmoniously.</UTH_TradingMotto7>
+  <UTH_TradingMotto8>Optimizing inefficiency, efficiently.</UTH_TradingMotto8>
+  <UTH_TradingMotto9>Monetizing uncertainty, confidently.</UTH_TradingMotto9>
+  <UTH_TradingMotto10>Profiting from loss, gainfully.</UTH_TradingMotto10>
+  <UTH_TradingMotto11>Engineering unpredictability, reliably.</UTH_TradingMotto11>
+  <UTH_TradingMotto12>Quantifying the intangible, tangibly.</UTH_TradingMotto12>
+  <UTH_TradingMotto13>Digitizing analog, digitally.</UTH_TradingMotto13>
+  <UTH_TradingMotto14>Trading secrets, transparently.</UTH_TradingMotto14>
+  <UTH_TradingMotto15>Automating spontaneity, systematically.</UTH_TradingMotto15>
+  <UTH_TradingMotto16>Gambling on stability, wisely.</UTH_TradingMotto16>
+  <UTH_TradingMotto17>Algorithmizing luck, algorithmically.</UTH_TradingMotto17>
+  <UTH_TradingMotto18>Harnessing chance, systematically.</UTH_TradingMotto18>
+  <UTH_TradingMotto19>Simulating reality, authentically.</UTH_TradingMotto19>
+  <UTH_TradingMotto20>Speculating certainty, hypothetically.</UTH_TradingMotto20>
+
+  <!-- Category Labels -->
+  <UTH_Weapons>Weapons</UTH_Weapons>
+  <UTH_Apparel>Apparel</UTH_Apparel>
+  <UTH_Food>Food</UTH_Food>
+  <UTH_Medicine>Medicine</UTH_Medicine>
+  <UTH_Materials>Materials</UTH_Materials>
+  <UTH_Buildings>Buildings</UTH_Buildings>
+  <UTH_Exotic>Exotic</UTH_Exotic>
+  <UTH_Other>Other</UTH_Other>
+
+  <!-- UI Labels -->
+  <UTH_SelectedItems>Selected Items</UTH_SelectedItems>
+  <UTH_TotalPriceMinusTax>&lt;b&gt;Total Price (minus tax): &lt;/b&gt;</UTH_TotalPriceMinusTax>
+  <UTH_TotalTax>&lt;b&gt;Total Tax: &lt;/b&gt;</UTH_TotalTax>
+  <UTH_FinalPriceWithTax>&lt;b&gt;Final Price (with tax): &lt;/b&gt;</UTH_FinalPriceWithTax>
+  <UTH_Cart>Cart</UTH_Cart>
+  <UTH_ExpressDelivery>&lt;b&gt;Express Delivery&lt;/b&gt;</UTH_ExpressDelivery>
+  <UTH_InsuranceCoverage>&lt;b&gt;Insurance Coverage&lt;/b&gt;</UTH_InsuranceCoverage>
+  <UTH_AddedRemovedItems>Added/Removed {0} items.</UTH_AddedRemovedItems>
+  <UTH_Days>days</UTH_Days>
+  <UTH_OrderSummary>&lt;b&gt;Order Summary&lt;/b&gt;</UTH_OrderSummary>
+  <UTH_TotalDeliveryTime>&lt;b&gt;Total Delivery Time: &lt;/b&gt;</UTH_TotalDeliveryTime>
+  <UTH_TotalAvailableSilver>&lt;b&gt;Total Available Silver: &lt;/b&gt;</UTH_TotalAvailableSilver>
+  <UTH_ConfirmOrder>Confirm Order</UTH_ConfirmOrder>
+  <UTH_NoItemsSelectedForOrder>No items selected for order.</UTH_NoItemsSelectedForOrder>
+  <UTH_OrderConfirmedPodsArriveIn>Order confirmed! Pods will arrive in {0}.</UTH_OrderConfirmedPodsArriveIn>
+  <UTH_NotEnoughSilver>You do not have enough silver to complete this transaction.</UTH_NotEnoughSilver>
+  <UTH_DaysHours>{0} days, {1} hours</UTH_DaysHours>
+  <UTH_Arrival>Arrival</UTH_Arrival>
+  
+  <UTH_5Days>5 Days</UTH_5Days>
+  <UTH_15Days>15 Days</UTH_15Days>
+  <UTH_30Days>30 Days</UTH_30Days>
+  <UTH_ManageSubs>&lt;b&gt;Manage UTH Subscription&lt;/b&gt;</UTH_ManageSubs>
+  <UTH_SubDesc>UTH subscriptions provide a {0}% discount on total prices for all orders.\nIdeal for frequent purchases.</UTH_SubDesc>
+  <UTH_ActiveSub>Active Subscription: {0} days remaining</UTH_ActiveSub>
+  <UTH_CancelSub>Cancel Subscription</UTH_CancelSub>
+  <UTH_SubPurchased>Subscription purchased for {0} days.</UTH_SubPurchased>
+  <UTH_PercentOff>&lt;b&gt;{0}% off!&lt;/b&gt;</UTH_PercentOff>
+</LanguageData>

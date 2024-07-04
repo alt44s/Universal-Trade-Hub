@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Universal Trade Hub</name>
+	<author>alt4s</author>
+	<supportedVersions>
+		<li>1.5</li>
+	</supportedVersions>
+	<packageId>alt4s.UniversalTradeHub</packageId>
+	<description>Adds a special trade console allowing ordering any item from any place.</description>
+</ModMetaData>

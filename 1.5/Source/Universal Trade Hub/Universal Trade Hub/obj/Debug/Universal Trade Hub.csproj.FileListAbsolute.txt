@@ -1,0 +1,8 @@
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\Assemblies\Universal Trade Hub.dll
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\Source\Universal Trade Hub\Universal Trade Hub\obj\Debug\Universal Trade Hub.csproj.CoreCompileInputs.cache
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\Source\Universal Trade Hub\Universal Trade Hub\obj\Debug\Universal Trade Hub.dll
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\Source\Universal Trade Hub\Universal Trade Hub\obj\Debug\Universal Trade Hub.csproj.AssemblyReference.cache
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\1.5\Assemblies\Universal Trade Hub.dll
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\1.5\Source\Universal Trade Hub\Universal Trade Hub\obj\Debug\Universal Trade Hub.csproj.CoreCompileInputs.cache
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\1.5\Source\Universal Trade Hub\Universal Trade Hub\obj\Debug\Universal Trade Hub.dll
+F:\SteamLibrary\steamapps\common\RimWorld\Mods\Universal Trade Hub\1.5\Source\Universal Trade Hub\Universal Trade Hub\obj\Debug\Universal Trade Hub.csproj.AssemblyReference.cache
