@@ -23,7 +23,7 @@ namespace Universal_Trade_Hub
 		public float wealthMultiplier = 0.1f;
 		public float baseSubscriptionPrice = 1000;
 
-		public float attackChance = 0.05f;
+		public float attackChance = 0.02f;
 
 		public override void ExposeData()
 		{
@@ -41,7 +41,7 @@ namespace Universal_Trade_Hub
 			Scribe_Values.Look(ref wealthMultiplier, "wealthMultiplier", 0.1f);
 			Scribe_Values.Look(ref baseSubscriptionPrice, "baseSubscriptionPrice", 1000);
 
-			Scribe_Values.Look(ref attackChance, "attackChance", 0.05f);
+			Scribe_Values.Look(ref attackChance, "attackChance", 0.02f);
 
 			base.ExposeData();
 		}
@@ -159,7 +159,7 @@ namespace Universal_Trade_Hub
 			Text.Font = GameFont.Small;
 
 			float viewWidth = settingsAreaRect.width - 30f;
-			float viewHeight = settingsAreaRect.height + 200f;
+			float viewHeight = settingsAreaRect.height + 400f;
 
 			Rect outRect = new Rect((settingsAreaRect.width - viewWidth) / 2f, settingsAreaRect.yMin - 30f, viewWidth + 30f, settingsAreaRect.height / 2 + 100f);
 			Rect viewRect = new Rect(outRect.x, outRect.y, viewWidth, viewHeight);
@@ -304,7 +304,7 @@ namespace Universal_Trade_Hub
 			settings.wealthMultiplier = 0.1f;
 			settings.baseSubscriptionPrice = 1000;
 
-			settings.attackChance = 0.05f;
+			settings.attackChance = 0.02f;
 		}
 	}
 }

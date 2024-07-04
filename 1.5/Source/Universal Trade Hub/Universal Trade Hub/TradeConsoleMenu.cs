@@ -1037,7 +1037,7 @@ namespace Universal_Trade_Hub
 	public class UTH_FinalOrderMenu : Window
 	{
 		private readonly Building_UniversalTradeConsole console;
-		
+
 		private Dictionary<ThingDef, int> orderedItems;
 
 		private bool expressDeliveryChecked = false;

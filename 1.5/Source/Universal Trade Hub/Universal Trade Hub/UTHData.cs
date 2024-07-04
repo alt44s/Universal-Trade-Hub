@@ -2,6 +2,7 @@
 using RimWorld.Planet;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 using Verse.Sound;
 
@@ -11,6 +12,7 @@ namespace Universal_Trade_Hub
 	{
 		//can only have 1 subscription
 		public int subscriptionTick;
+
 		public bool hasSubscription = false;
 
 		public UTH_WorldComponent_SubscriptionTracker(World world) : base(world)
@@ -104,7 +106,7 @@ namespace Universal_Trade_Hub
 					Messages.Message("UTH_OrderDestinationInvalid".Translate(), MessageTypeDefOf.SilentInput, historical: false);
 					deliveredOrders.Add(order);
 				}
-				else if (Find.TickManager.TicksGame >= nextAttackCheckTick && Rand.Chance(attackChance))
+				else if (Find.TickManager.TicksGame >= nextAttackCheckTick && Random.value <= attackChance)
 				{
 					if (order.insuranceChecked)
 					{
