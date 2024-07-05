@@ -1115,9 +1115,12 @@ namespace Universal_Trade_Hub
 
 			foreach (var item in orderedItems)
 			{
-				adjustedMarketValues[item.Key] = item.Key.BaseMarketValue;
+				if (!adjustedMarketValues.ContainsKey(item.Key))
+				{
+					adjustedMarketValues[item.Key] = item.Key.BaseMarketValue;
+				}
 
-				if (item.Key.tradeTags.Contains("UtilitySpecial") || item.Key.tradeTags.Contains("ExoticMisc") || item.Key.tradeTags.Contains("ExoticBuilding"))
+				if (item.Key.tradeTags != null && (item.Key.tradeTags.Contains("UtilitySpecial") || item.Key.tradeTags.Contains("ExoticMisc") || item.Key.tradeTags.Contains("ExoticBuilding")))
 				{
 					adjustedMarketValues[item.Key] = item.Key.BaseMarketValue * specialMultiplier;
 				}
