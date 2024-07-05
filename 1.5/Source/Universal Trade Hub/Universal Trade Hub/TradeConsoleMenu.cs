@@ -947,7 +947,22 @@ namespace Universal_Trade_Hub
 
 		private bool IsItemInSelectedCategory(ThingDef item)
 		{
-			if (item == null || item.category != ThingCategory.Item && item.category != ThingCategory.Building && item.tradeability != Tradeability.Buyable && item.tradeability != Tradeability.Sellable || item.BaseMarketValue <= 0)
+			if (item == null)
+			{
+				return false;
+			}
+
+			if (item.category != ThingCategory.Item && item.category != ThingCategory.Building)
+			{
+				return false;
+			}
+
+			if (item.tradeability == Tradeability.None)
+			{
+				return false;
+			}
+
+			if (item.BaseMarketValue <= 0)
 			{
 				return false;
 			}
