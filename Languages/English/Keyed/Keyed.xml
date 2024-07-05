@@ -39,6 +39,8 @@
   <UTH_BaseSubscriptionPriceTooltip>Specifies the base price for subscriptions.</UTH_BaseSubscriptionPriceTooltip>
   <UTH_AttackChanceLabel>Attack Chance</UTH_AttackChanceLabel>
   <UTH_AttackChanceTooltip>Probability of an order getting attacked and lost.</UTH_AttackChanceTooltip>
+  <UTH_SpecialMultiplierLabel>Special Items Multiplier</UTH_SpecialMultiplierLabel>
+  <UTH_SpecialMultiplierTooltip>Additional multiplier for special (exotic) items.</UTH_SpecialMultiplierTooltip>
   
   <UTH_CreditsTranslation>Translation:</UTH_CreditsTranslation>
   <UTH_CreditsTranslation2>Your name here!</UTH_CreditsTranslation2>

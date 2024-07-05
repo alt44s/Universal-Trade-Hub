@@ -20,12 +20,10 @@ namespace Universal_Trade_Hub
 		public float deliveryTimeReductionForStuff = 0.05f;
 
 		public float priceReductionMultiplier = 0.6f;
-		public float wealthMultiplier = 0.05f;
+		public float wealthMultiplier = 0.1f;
 		public float baseSubscriptionPrice = 1000;
 
 		public float attackChance = 0.02f;
-
-		public float specialMultiplier = 2.8f;
 
 		public override void ExposeData()
 		{
@@ -40,12 +38,10 @@ namespace Universal_Trade_Hub
 			Scribe_Values.Look(ref deliveryTimeReductionForStuff, "deliveryTimeReductionForStuff", 0.05f);
 
 			Scribe_Values.Look(ref priceReductionMultiplier, "priceReductionMultiplier", 0.6f);
-			Scribe_Values.Look(ref wealthMultiplier, "wealthMultiplier", 0.05f);
+			Scribe_Values.Look(ref wealthMultiplier, "wealthMultiplier", 0.1f);
 			Scribe_Values.Look(ref baseSubscriptionPrice, "baseSubscriptionPrice", 1000);
 
 			Scribe_Values.Look(ref attackChance, "attackChance", 0.02f);
-
-			Scribe_Values.Look(ref specialMultiplier, "specialMultiplier", 2.8f);
 
 			base.ExposeData();
 		}
@@ -163,7 +159,11 @@ namespace Universal_Trade_Hub
 			Text.Font = GameFont.Small;
 
 			float viewWidth = settingsAreaRect.width - 30f;
+<<<<<<< HEAD
+			float viewHeight = settingsAreaRect.height + 200f;
+=======
 			float viewHeight = settingsAreaRect.height + 400f;
+>>>>>>> 113e094 (optimize item display in category order menus)
 
 			Rect outRect = new Rect((settingsAreaRect.width - viewWidth) / 2f, settingsAreaRect.yMin - 30f, viewWidth + 30f, settingsAreaRect.height / 2 + 100f);
 			Rect viewRect = new Rect(outRect.x, outRect.y, viewWidth, viewHeight);
@@ -179,7 +179,7 @@ namespace Universal_Trade_Hub
 			innerListing.Gap(25f);
 
 			Rect sliderRect1 = innerListing.GetRect(22f);
-			settings.taxRate = Widgets.HorizontalSlider(sliderRect1, settings.taxRate, 0f, 5.0f, true, "UTH_TaxRateLabel".Translate() + ": " + settings.taxRate.ToString("P0"), "0%", "500%");
+			settings.taxRate = Widgets.HorizontalSlider(sliderRect1, settings.taxRate, 0f, 1.5f, true, "UTH_TaxRateLabel".Translate() + ": " + settings.taxRate.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect1, "UTH_TaxRateTooltip".Translate());
 
 			innerListing.Gap(25f);
@@ -191,7 +191,7 @@ namespace Universal_Trade_Hub
 			innerListing.Gap(25f);
 
 			Rect sliderRect3 = innerListing.GetRect(22f);
-			settings.expressDeliveryMultiplierPerKg = Widgets.HorizontalSlider(sliderRect3, settings.expressDeliveryMultiplierPerKg, 0f, 5.0f, true, "UTH_ExpressDeliveryMultiplierPerKgLabel".Translate() + ": " + settings.expressDeliveryMultiplierPerKg.ToString("P0"), "0%", "500%");
+			settings.expressDeliveryMultiplierPerKg = Widgets.HorizontalSlider(sliderRect3, settings.expressDeliveryMultiplierPerKg, 0f, 1.5f, true, "UTH_ExpressDeliveryMultiplierPerKgLabel".Translate() + ": " + settings.expressDeliveryMultiplierPerKg.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect3, "UTH_ExpressDeliveryMultiplierPerKgTooltip".Translate());
 
 			innerListing.Gap(25f);
@@ -209,31 +209,31 @@ namespace Universal_Trade_Hub
 			innerListing.Gap(25f);
 
 			Rect sliderRect6 = innerListing.GetRect(22f);
-			settings.insuranceMultiplier = Widgets.HorizontalSlider(sliderRect6, settings.insuranceMultiplier, 0f, 5.0f, true, "UTH_InsuranceMultiplierLabel".Translate() + ": " + settings.insuranceMultiplier.ToString("P0"), "0%", "500%");
+			settings.insuranceMultiplier = Widgets.HorizontalSlider(sliderRect6, settings.insuranceMultiplier, 0f, 1.5f, true, "UTH_InsuranceMultiplierLabel".Translate() + ": " + settings.insuranceMultiplier.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect6, "UTH_InsuranceMultiplierTooltip".Translate());
 
 			innerListing.Gap(25f);
 
 			Rect sliderRect7 = innerListing.GetRect(22f);
-			settings.deliveryTimePerKg = Widgets.HorizontalSlider(sliderRect7, settings.deliveryTimePerKg, 0f, 5.0f, true, "UTH_DeliveryTimePerKgLabel".Translate() + ": " + settings.deliveryTimePerKg.ToString("P0"), "0%", "500%");
+			settings.deliveryTimePerKg = Widgets.HorizontalSlider(sliderRect7, settings.deliveryTimePerKg, 0f, 1.5f, true, "UTH_DeliveryTimePerKgLabel".Translate() + ": " + settings.deliveryTimePerKg.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect7, "UTH_DeliveryTimePerKgTooltip".Translate());
 
 			innerListing.Gap(25f);
 
 			Rect sliderRect8 = innerListing.GetRect(22f);
-			settings.deliveryTimeReductionForStuff = Widgets.HorizontalSlider(sliderRect8, settings.deliveryTimeReductionForStuff, 0f, 5.0f, true, "UTH_DeliveryTimeReductionForStuffLabel".Translate() + ": " + settings.deliveryTimeReductionForStuff.ToString("P0"), "0%", "500%");
+			settings.deliveryTimeReductionForStuff = Widgets.HorizontalSlider(sliderRect8, settings.deliveryTimeReductionForStuff, 0f, 1.5f, true, "UTH_DeliveryTimeReductionForStuffLabel".Translate() + ": " + settings.deliveryTimeReductionForStuff.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect8, "UTH_DeliveryTimeReductionForStuffTooltip".Translate());
 
 			innerListing.Gap(25f);
 
 			Rect sliderRect9 = innerListing.GetRect(22f);
-			settings.priceReductionMultiplier = Widgets.HorizontalSlider(sliderRect9, settings.priceReductionMultiplier, 0f, 5.0f, true, "UTH_PriceReductionMultiplierLabel".Translate() + ": " + settings.priceReductionMultiplier.ToString("P0"), "0%", "500%");
+			settings.priceReductionMultiplier = Widgets.HorizontalSlider(sliderRect9, settings.priceReductionMultiplier, 0f, 1.5f, true, "UTH_PriceReductionMultiplierLabel".Translate() + ": " + settings.priceReductionMultiplier.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect9, "UTH_PriceReductionMultiplierTooltip".Translate());
 
 			innerListing.Gap(25f);
 
 			Rect sliderRect10 = innerListing.GetRect(22f);
-			settings.wealthMultiplier = Widgets.HorizontalSlider(sliderRect10, settings.wealthMultiplier, 0f, 5.0f, true, "UTH_WealthMultiplierLabel".Translate() + ": " + settings.wealthMultiplier.ToString("P0"), "0%", "500%");
+			settings.wealthMultiplier = Widgets.HorizontalSlider(sliderRect10, settings.wealthMultiplier, 0f, 1.5f, true, "UTH_WealthMultiplierLabel".Translate() + ": " + settings.wealthMultiplier.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect10, "UTH_WealthMultiplierTooltip".Translate());
 
 			innerListing.Gap(25f);
@@ -245,14 +245,10 @@ namespace Universal_Trade_Hub
 			innerListing.Gap(25f);
 
 			Rect sliderRect12 = innerListing.GetRect(22f);
-			settings.attackChance = Widgets.HorizontalSlider(sliderRect12, settings.attackChance, 0f, 1.0f, true, "UTH_AttackChanceLabel".Translate() + ": " + settings.attackChance.ToString("P0"), "0%", "100%");
+			settings.attackChance = Widgets.HorizontalSlider(sliderRect12, settings.attackChance, 0f, 1.5f, true, "UTH_AttackChanceLabel".Translate() + ": " + settings.attackChance.ToString("P0"), "0%", "150%");
 			TooltipHandler.TipRegion(sliderRect12, "UTH_AttackChanceTooltip".Translate());
 
 			innerListing.Gap(25f);
-
-			Rect sliderRect13 = innerListing.GetRect(22f);
-			settings.specialMultiplier = Widgets.HorizontalSlider(sliderRect13, settings.specialMultiplier, 0f, 5.0f, true, "UTH_SpecialMultiplierLabel".Translate() + ": " + settings.specialMultiplier.ToString("P0"), "0%", "500%");
-			TooltipHandler.TipRegion(sliderRect13, "UTH_SpecialMultiplierTooltip".Translate());
 
 			innerListing.End();
 			Widgets.EndScrollView();
@@ -309,12 +305,10 @@ namespace Universal_Trade_Hub
 			settings.deliveryTimeReductionForStuff = 0.05f;
 
 			settings.priceReductionMultiplier = 0.6f;
-			settings.wealthMultiplier = 0.05f;
+			settings.wealthMultiplier = 0.1f;
 			settings.baseSubscriptionPrice = 1000;
 
 			settings.attackChance = 0.02f;
-
-			settings.specialMultiplier = 2.8f;
 		}
 	}
 }

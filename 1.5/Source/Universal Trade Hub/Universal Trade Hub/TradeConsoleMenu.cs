@@ -168,13 +168,21 @@ namespace Universal_Trade_Hub
 		public static int CalculateTotalAvailableSilver(Map map)
 		{
 			int totalSilver = 0;
-			foreach (Thing silver in TradeUtility.AllLaunchableThingsForTrade(map))
+			if (map != null)
 			{
-				if (silver.def == ThingDefOf.Silver)
+				foreach (Thing silver in TradeUtility.AllLaunchableThingsForTrade(map))
 				{
-					totalSilver += silver.stackCount;
+					if (silver.def == ThingDefOf.Silver)
+					{
+						totalSilver += silver.stackCount;
+					}
 				}
 			}
+			else
+			{
+				Log.Error("[UTH] Tried to get total available silver from a null map.");
+			}
+
 			return totalSilver;
 		}
 	}
@@ -393,8 +401,8 @@ namespace Universal_Trade_Hub
 		private float multToPercent;
 		private readonly float wealthMultiplier = UTH_Mod.settings.wealthMultiplier;
 
-		private float baseSubscriptionPrice = UTH_Mod.settings.baseSubscriptionPrice;
-		private float colonyWealth = Find.World.PlayerWealthForStoryteller;
+		private readonly float baseSubscriptionPrice = UTH_Mod.settings.baseSubscriptionPrice;
+		private readonly float colonyWealth = WealthUtility.PlayerWealth;
 
 		private List<(string label, int days, float price, float discount)> subscriptionPlans;
 		private List<(string label, int days, float price, float discount)> updatedSubscriptionPlans = new List<(string label, int days, float price, float discount)>();
@@ -707,11 +715,17 @@ namespace Universal_Trade_Hub
 		private List<ThingDef> items;
 		private List<ThingDef> filteredItems;
 		private readonly Dictionary<ThingDef, int> itemCounts;
+		private readonly Dictionary<ThingDef, float> adjustedMarketValues;
 		private string searchText = "";
+
+		private readonly float wealthMultiplier = UTH_Mod.settings.wealthMultiplier;
+		private readonly float colonyWealth = WealthUtility.PlayerWealth;
 
 		private float totalPrice = 0f;
 		private float totalTax = 0f;
-		public float taxRate = UTH_Mod.settings.taxRate;
+		private float taxRate = UTH_Mod.settings.taxRate;
+
+		private float specialMultiplier = UTH_Mod.settings.specialMultiplier;
 
 		private const float ItemHeight = 40f;
 
@@ -726,6 +740,7 @@ namespace Universal_Trade_Hub
 			forcePause = true;
 
 			itemCounts = new Dictionary<ThingDef, int>();
+			adjustedMarketValues = new Dictionary<ThingDef, float>();
 
 			LoadItems();
 
@@ -738,6 +753,16 @@ namespace Universal_Trade_Hub
 				else
 				{
 					itemCounts[item] = 0;
+				}
+
+				if (!adjustedMarketValues.ContainsKey(item))
+				{
+					adjustedMarketValues[item] = item.BaseMarketValue;
+				}
+
+				if (item.tradeTags != null && (item.tradeTags.Contains("UtilitySpecial") || item.tradeTags.Contains("ExoticMisc") || item.tradeTags.Contains("ExoticBuilding")))
+				{
+					adjustedMarketValues[item] = item.BaseMarketValue * specialMultiplier;
 				}
 			}
 
@@ -819,8 +844,12 @@ namespace Universal_Trade_Hub
 
 			Widgets.EndScrollView();
 
-			totalPrice = itemCounts.Sum(ic => ic.Key.BaseMarketValue * ic.Value);
-			totalTax = totalPrice * taxRate;
+			totalPrice = itemCounts.Sum(ic => adjustedMarketValues[ic.Key] * ic.Value);
+			totalTax = totalPrice * taxRate + colonyWealth * wealthMultiplier;
+			if (totalPrice == 0)
+			{
+				totalTax = 0;
+			}
 			float finalPrice = totalPrice + totalTax;
 
 			float priceBoxHeight = 140f;
@@ -959,7 +988,7 @@ namespace Universal_Trade_Hub
 			Widgets.Label(nameRect, item.label);
 
 			Rect priceRect = new Rect(nameRect.xMax + 10f, rect.y, 100f, rect.height);
-			Widgets.Label(priceRect, item.BaseMarketValue.ToStringMoney());
+			Widgets.Label(priceRect, adjustedMarketValues[item].ToStringMoney());
 
 			if (!itemCounts.ContainsKey(item))
 			{
@@ -989,7 +1018,7 @@ namespace Universal_Trade_Hub
 				itemCounts[item] = newCount;
 			}
 
-			totalPrice = itemCounts.Sum(ic => ic.Key.BaseMarketValue * ic.Value);
+			totalPrice = itemCounts.Sum(ic => adjustedMarketValues[ic.Key] * ic.Value);
 		}
 
 		private void DrawSelectedItemRow(Rect rect, ThingDef item)
@@ -1028,9 +1057,9 @@ namespace Universal_Trade_Hub
 			}
 
 			Rect totalItemPriceRect = new Rect(rightArrowRect.xMax + 10f, rect.y, rect.width - rightArrowRect.xMax - 10f, rect.height);
-			Widgets.Label(totalItemPriceRect, (item.BaseMarketValue * itemCounts[item]).ToStringMoney());
+			Widgets.Label(totalItemPriceRect, (adjustedMarketValues[item] * itemCounts[item]).ToStringMoney());
 
-			totalPrice = itemCounts.Sum(ic => ic.Key.BaseMarketValue * ic.Value);
+			totalPrice = itemCounts.Sum(ic => adjustedMarketValues[ic.Key] * ic.Value);
 		}
 	}
 
@@ -1039,6 +1068,7 @@ namespace Universal_Trade_Hub
 		private readonly Building_UniversalTradeConsole console;
 
 		private Dictionary<ThingDef, int> orderedItems;
+		private readonly Dictionary<ThingDef, float> adjustedMarketValues;
 
 		private bool expressDeliveryChecked = false;
 		private bool insuranceChecked = false;
@@ -1053,9 +1083,15 @@ namespace Universal_Trade_Hub
 		private float deliveryTimePerKg = UTH_Mod.settings.deliveryTimePerKg;
 		private float deliveryTimeReductionForStuff = UTH_Mod.settings.deliveryTimeReductionForStuff;
 
+		private readonly float wealthMultiplier = UTH_Mod.settings.wealthMultiplier;
+		private readonly float colonyWealth = WealthUtility.PlayerWealth;
+		public float taxRate = UTH_Mod.settings.taxRate;
+
 		private UTH_WorldComponent_SubscriptionTracker subscriptionTracker = Find.World.GetComponent<UTH_WorldComponent_SubscriptionTracker>();
 		private UTH_SubscriptionMenu subscriptionMenu;
 		private float multToPercent;
+
+		private float specialMultiplier = UTH_Mod.settings.specialMultiplier;
 
 		private float totalAvailableSilver;
 
@@ -1072,8 +1108,20 @@ namespace Universal_Trade_Hub
 
 			totalAvailableSilver = UTH_UIUtility.CalculateTotalAvailableSilver(console.Map);
 
+			adjustedMarketValues = new Dictionary<ThingDef, float>();
+
 			subscriptionMenu = new UTH_SubscriptionMenu(console);
 			multToPercent = (1 - subscriptionMenu.PriceReductionMultiplier) * 100;
+
+			foreach (var item in orderedItems)
+			{
+				adjustedMarketValues[item.Key] = item.Key.BaseMarketValue;
+
+				if (item.Key.tradeTags.Contains("UtilitySpecial") || item.Key.tradeTags.Contains("ExoticMisc") || item.Key.tradeTags.Contains("ExoticBuilding"))
+				{
+					adjustedMarketValues[item.Key] = item.Key.BaseMarketValue * specialMultiplier;
+				}
+			}
 		}
 
 		public override Vector2 InitialSize => new Vector2(900f, 600f);
@@ -1151,8 +1199,12 @@ namespace Universal_Trade_Hub
 				Widgets.Label(insuranceCostRect, $"+ {insuranceCost.ToStringMoney()}");
 			}
 
-			float totalPriceWithoutTax = orderedItems.Sum(kv => kv.Key.BaseMarketValue * kv.Value);
-			float totalTax = totalPriceWithoutTax * 0.1f;
+			float totalPriceWithoutTax = orderedItems.Sum(kv => adjustedMarketValues[kv.Key] * kv.Value);
+			float totalTax = totalPriceWithoutTax * taxRate + colonyWealth * wealthMultiplier;
+			if (totalPriceWithoutTax == 0)
+			{
+				totalTax = 0;
+			}
 			float finalPrice = totalPriceWithoutTax + totalTax + expressDeliveryCost + insuranceCost;
 
 			if (subscriptionTracker.hasSubscription)
@@ -1279,7 +1331,7 @@ namespace Universal_Trade_Hub
 			}
 
 			Rect totalItemPriceRect = new Rect(rightArrowRect.xMax + 10f, rect.y, rect.width - rightArrowRect.xMax - 10f, rect.height);
-			Widgets.Label(totalItemPriceRect, (item.BaseMarketValue * orderedItems[item]).ToStringMoney());
+			Widgets.Label(totalItemPriceRect, (adjustedMarketValues[item] * orderedItems[item]).ToStringMoney());
 		}
 
 		private float CalculateAdditionalCost(float baseCost, float multiplier, bool isChecked)
@@ -1325,6 +1377,10 @@ namespace Universal_Trade_Hub
 				if (item is Book book)
 				{
 					book.GenerateBook();
+				}
+				if (item is Building building)
+				{
+					item = building.TryMakeMinified();
 				}
 				item.stackCount = kvp.Value;
 				items.Add(item);
