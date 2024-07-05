@@ -156,7 +156,7 @@ namespace Universal_Trade_Hub
 
 		private void DeliverOrder(ScheduledOrderData order)
 		{
-			DropPodUtility.DropThingsNear(order.deliveryPoint, order.map, order.items, 110, canInstaDropDuringInit: false, leaveSlag: true, canRoofPunch: false);
+			DropPodUtility.DropThingsNear(order.deliveryPoint, order.map, order.items, 110, canInstaDropDuringInit: false, leaveSlag: true, canRoofPunch: false, forbid: UTH_Mod.settings.forbidOnDrop);
 
 			UTH_UIData.systemAlert1.PlayOneShotOnCamera();
 			Messages.Message("UTH_OrderDelivered".Translate(), MessageTypeDefOf.SilentInput, historical: false);

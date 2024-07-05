@@ -14,6 +14,7 @@
   <UTH_OrderSettings>Order Settings</UTH_OrderSettings>
   
   <UTH_EnableInitAnim>Enable console init animation</UTH_EnableInitAnim>
+  <UTH_ForbidOnDrop>Forbid items when delivered via drop pod</UTH_ForbidOnDrop>
   
   <UTH_TaxRateLabel>Tax Rate</UTH_TaxRateLabel>
   <UTH_TaxRateTooltip>Adjust the tax rate applied to transactions.</UTH_TaxRateTooltip>

@@ -9,6 +9,7 @@ namespace Universal_Trade_Hub
 	public class UTH_ModSettings : ModSettings
 	{
 		public bool enableInitAnim = true;
+		public bool forbidOnDrop = true;
 
 		public float taxRate = 0.1f;
 		public float expressDeliveryBaseCost = 50f;
@@ -30,6 +31,7 @@ namespace Universal_Trade_Hub
 		public override void ExposeData()
 		{
 			Scribe_Values.Look(ref enableInitAnim, "enableInitAnim", true);
+			Scribe_Values.Look(ref forbidOnDrop, "forbidOnDrop", true);
 			Scribe_Values.Look(ref taxRate, "taxRate", 0.1f);
 			Scribe_Values.Look(ref expressDeliveryBaseCost, "expressDeliveryBaseCost", 50f);
 			Scribe_Values.Look(ref expressDeliveryMultiplierPerKg, "expressDeliveryMultiplierPerKg", 0.9f);
@@ -178,6 +180,10 @@ namespace Universal_Trade_Hub
 
 			innerListing.Gap(25f);
 
+			innerListing.CheckboxLabeled("UTH_ForbidOnDrop".Translate(), ref settings.forbidOnDrop);
+
+			innerListing.Gap(25f);
+
 			Rect sliderRect1 = innerListing.GetRect(22f);
 			settings.taxRate = Widgets.HorizontalSlider(sliderRect1, settings.taxRate, 0f, 5.0f, true, "UTH_TaxRateLabel".Translate() + ": " + settings.taxRate.ToString("P0"), "0%", "500%");
 			TooltipHandler.TipRegion(sliderRect1, "UTH_TaxRateTooltip".Translate());
@@ -298,6 +304,7 @@ namespace Universal_Trade_Hub
 		private void ResetToDefaults()
 		{
 			settings.enableInitAnim = true;
+			settings.forbidOnDrop = true;
 
 			settings.taxRate = 0.1f;
 			settings.expressDeliveryBaseCost = 50f;
