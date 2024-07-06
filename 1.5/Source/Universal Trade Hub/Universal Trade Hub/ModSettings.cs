@@ -21,7 +21,7 @@ namespace Universal_Trade_Hub
 		public float deliveryTimeReductionForStuff = 0.05f;
 
 		public float priceReductionMultiplier = 0.6f;
-		public float wealthMultiplier = 0.005f;
+		public float wealthMultiplier = 0.2f;
 		public float baseSubscriptionPrice = 1000;
 
 		public float attackChance = 0.02f;
@@ -42,7 +42,7 @@ namespace Universal_Trade_Hub
 			Scribe_Values.Look(ref deliveryTimeReductionForStuff, "deliveryTimeReductionForStuff", 0.05f);
 
 			Scribe_Values.Look(ref priceReductionMultiplier, "priceReductionMultiplier", 0.6f);
-			Scribe_Values.Look(ref wealthMultiplier, "wealthMultiplier", 0.005f);
+			Scribe_Values.Look(ref wealthMultiplier, "wealthMultiplier", 0.2f);
 			Scribe_Values.Look(ref baseSubscriptionPrice, "baseSubscriptionPrice", 1000);
 
 			Scribe_Values.Look(ref attackChance, "attackChance", 0.02f);
@@ -178,7 +178,7 @@ namespace Universal_Trade_Hub
 
 			innerListing.CheckboxLabeled("UTH_EnableInitAnim".Translate(), ref settings.enableInitAnim);
 
-			innerListing.Gap(25f);
+			innerListing.Gap(5f);
 
 			innerListing.CheckboxLabeled("UTH_ForbidOnDrop".Translate(), ref settings.forbidOnDrop);
 
@@ -239,7 +239,7 @@ namespace Universal_Trade_Hub
 			innerListing.Gap(25f);
 
 			Rect sliderRect10 = innerListing.GetRect(22f);
-			settings.wealthMultiplier = Widgets.HorizontalSlider(sliderRect10, settings.wealthMultiplier, 0f, 5.0f, true, "UTH_WealthMultiplierLabel".Translate() + ": " + settings.wealthMultiplier.ToString("P1"), "0%", "500%");
+			settings.wealthMultiplier = Widgets.HorizontalSlider(sliderRect10, settings.wealthMultiplier, 0f, 1.0f, true, "UTH_WealthMultiplierLabel".Translate() + ": " + settings.wealthMultiplier.ToString("P0"), "0%", "100%");
 			TooltipHandler.TipRegion(sliderRect10, "UTH_WealthMultiplierTooltip".Translate());
 
 			innerListing.Gap(25f);
@@ -316,7 +316,7 @@ namespace Universal_Trade_Hub
 			settings.deliveryTimeReductionForStuff = 0.05f;
 
 			settings.priceReductionMultiplier = 0.6f;
-			settings.wealthMultiplier = 0.005f;
+			settings.wealthMultiplier = 0.2f;
 			settings.baseSubscriptionPrice = 1000;
 
 			settings.attackChance = 0.02f;

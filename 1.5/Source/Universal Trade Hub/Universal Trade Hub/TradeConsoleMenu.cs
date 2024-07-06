@@ -617,7 +617,7 @@ namespace Universal_Trade_Hub
 			{
 				float discount = plan.discount;
 
-				float adjustedPrice = plan.price * discount + colonyWealth * wealthMultiplier;
+				float adjustedPrice = (plan.price + colonyWealth * Mathf.Pow(wealthMultiplier, 2f)) * discount;
 
 				updatedSubscriptionPlans.Add((plan.label, plan.days, adjustedPrice, discount));
 			}
@@ -845,7 +845,7 @@ namespace Universal_Trade_Hub
 			Widgets.EndScrollView();
 
 			totalPrice = itemCounts.Sum(ic => adjustedMarketValues[ic.Key] * ic.Value);
-			totalTax = totalPrice * taxRate + colonyWealth * wealthMultiplier;
+			totalTax = (totalPrice + colonyWealth * Mathf.Pow(wealthMultiplier, 2f)) * taxRate;
 			if (totalPrice == 0)
 			{
 				totalTax = 0;
@@ -1197,7 +1197,7 @@ namespace Universal_Trade_Hub
 
 			//these checkboxes go below order summary info
 			float expressDeliveryCost = CalculateExpressDeliveryCost(expressDeliveryBaseCost, expressDeliveryMultiplierPerKg, expressDeliveryChecked);
-			float insuranceCost = CalculateAdditionalCost(insuranceBaseCost, insuranceMultiplier, insuranceChecked);
+			float insuranceCost = CalculateInsuranceCost(insuranceBaseCost, insuranceMultiplier, insuranceChecked);
 
 			Rect expressDeliveryRect = new Rect(startX, startY, 170f, UTH_UIUtility.buttonHeight);
 			Widgets.CheckboxLabeled(expressDeliveryRect, "UTH_ExpressDelivery".Translate().Resolve(), ref expressDeliveryChecked);
@@ -1218,7 +1218,7 @@ namespace Universal_Trade_Hub
 			}
 
 			float totalPriceWithoutTax = orderedItems.Sum(kv => adjustedMarketValues[kv.Key] * kv.Value);
-			float totalTax = totalPriceWithoutTax * taxRate + colonyWealth * wealthMultiplier;
+			float totalTax = (totalPriceWithoutTax + colonyWealth * Mathf.Pow(wealthMultiplier, 2f)) * taxRate;
 			if (totalPriceWithoutTax == 0)
 			{
 				totalTax = 0;
@@ -1352,7 +1352,7 @@ namespace Universal_Trade_Hub
 			Widgets.Label(totalItemPriceRect, (adjustedMarketValues[item] * orderedItems[item]).ToStringMoney());
 		}
 
-		private float CalculateAdditionalCost(float baseCost, float multiplier, bool isChecked)
+		private float CalculateInsuranceCost(float baseCost, float multiplier, bool isChecked)
 		{
 			if (isChecked)
 			{
