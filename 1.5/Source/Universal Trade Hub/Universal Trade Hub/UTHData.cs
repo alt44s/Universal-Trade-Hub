@@ -55,14 +55,14 @@ namespace Universal_Trade_Hub
 
 		public List<ScheduledOrderData> ScheduledOrders => scheduledOrders;
 
-		private float attackChance = UTH_Mod.settings.attackChance;
+		private readonly float attackChance = UTH_Mod.settings.attackChance;
 		private int nextAttackCheckTick;
 
 		private HashSet<ScheduledOrderData> ordersToRemove = new HashSet<ScheduledOrderData>();
 
 		public UTH_WorldComponent_OrderScheduler(World world) : base(world)
 		{
-			nextAttackCheckTick = Find.TickManager.TicksGame + GenDate.TicksPerDay;
+			nextAttackCheckTick = Find.TickManager.TicksGame + GenDate.TicksPerDay * 2;
 		}
 
 		public override void ExposeData()
@@ -106,7 +106,7 @@ namespace Universal_Trade_Hub
 					Messages.Message("UTH_OrderDestinationInvalid".Translate(), MessageTypeDefOf.SilentInput, historical: false);
 					deliveredOrders.Add(order);
 				}
-				else if (Find.TickManager.TicksGame >= nextAttackCheckTick && Random.value <= attackChance)
+				else if (Find.TickManager.TicksGame >= nextAttackCheckTick && Random.value < attackChance)
 				{
 					if (order.insuranceChecked)
 					{
