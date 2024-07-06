@@ -57,12 +57,13 @@ namespace Universal_Trade_Hub
 
 		private readonly float attackChance = UTH_Mod.settings.attackChance;
 		private int nextAttackCheckTick;
+		private int attackDelay = GenDate.TicksPerDay * 2;
 
 		private HashSet<ScheduledOrderData> ordersToRemove = new HashSet<ScheduledOrderData>();
 
 		public UTH_WorldComponent_OrderScheduler(World world) : base(world)
 		{
-			nextAttackCheckTick = Find.TickManager.TicksGame + GenDate.TicksPerDay * 2;
+			nextAttackCheckTick = Find.TickManager.TicksGame + attackDelay;
 		}
 
 		public override void ExposeData()
@@ -122,7 +123,7 @@ namespace Universal_Trade_Hub
 						deliveredOrders.Add(order);
 					}
 
-					nextAttackCheckTick = Find.TickManager.TicksGame + GenDate.TicksPerDay;
+					nextAttackCheckTick = Find.TickManager.TicksGame + attackDelay;
 				}
 				else if (Find.TickManager.TicksGame >= order.deliveryTick)
 				{
