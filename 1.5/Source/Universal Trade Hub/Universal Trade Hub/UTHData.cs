@@ -87,6 +87,7 @@ namespace Universal_Trade_Hub
 		public void ScheduleOrder(ScheduledOrderData orderData)
 		{
 			scheduledOrders.Add(orderData);
+			nextAttackCheckTick = Find.TickManager.TicksGame + attackDelay;
 		}
 
 		public void RemoveOrder(ScheduledOrderData order)
