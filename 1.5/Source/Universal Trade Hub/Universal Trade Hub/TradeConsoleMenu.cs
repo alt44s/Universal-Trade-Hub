@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -257,7 +258,7 @@ namespace Universal_Trade_Hub
 			absorbInputAroundWindow = true;
 			forcePause = true;
 
-			randomMotto = tradingMottos[Random.Range(0, tradingMottos.Count)];
+			randomMotto = tradingMottos[UnityEngine.Random.Range(0, tradingMottos.Count)];
 		}
 
 		public override Vector2 InitialSize => new Vector2(700f, 500f);
@@ -788,6 +789,7 @@ namespace Universal_Trade_Hub
 			if (newSearchText != searchText)
 			{
 				searchText = newSearchText;
+				scrollPosition = Vector2.zero;
 				FilterItems();
 			}
 
@@ -940,7 +942,7 @@ namespace Universal_Trade_Hub
 			{
 				string lowerSearchText = searchText.ToLower();
 				filteredItems = items
-					.Where(item => item.label.ToLower().Contains(lowerSearchText))
+					.Where(item => item != null && item.label.ToLower().Contains(lowerSearchText))
 					.ToList();
 			}
 		}
@@ -962,8 +964,17 @@ namespace Universal_Trade_Hub
 				return false;
 			}
 
-			if (item.BaseMarketValue <= 0)
+			try
 			{
+				float baseMarketValue = item.BaseMarketValue;
+				if (baseMarketValue <= 0)
+				{
+					return false;
+				}
+			}
+			catch (Exception ex)
+			{
+				Log.Error($"[UTH] IsItemInSelectedCategory: Exception accessing item.BaseMarketValue - {ex.Message}");
 				return false;
 			}
 
@@ -1130,6 +1141,11 @@ namespace Universal_Trade_Hub
 
 			foreach (var item in orderedItems)
 			{
+				if (item.Key == null || item.Key.BaseMarketValue <= 0)
+				{
+					return;
+				}
+
 				if (!adjustedMarketValues.ContainsKey(item.Key))
 				{
 					adjustedMarketValues[item.Key] = item.Key.BaseMarketValue;
