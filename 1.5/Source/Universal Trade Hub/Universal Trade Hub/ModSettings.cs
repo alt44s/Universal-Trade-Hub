@@ -21,7 +21,7 @@ namespace Universal_Trade_Hub
 		public float deliveryTimeReductionForStuff = 0.05f;
 
 		public float priceReductionMultiplier = 0.6f;
-		public float wealthMultiplier = 0.2f;
+		public float wealthMultiplier = 0.1f;
 		public float baseSubscriptionPrice = 1000;
 
 		public float attackChance = 0.02f;
@@ -42,7 +42,7 @@ namespace Universal_Trade_Hub
 			Scribe_Values.Look(ref deliveryTimeReductionForStuff, "deliveryTimeReductionForStuff", 0.05f);
 
 			Scribe_Values.Look(ref priceReductionMultiplier, "priceReductionMultiplier", 0.6f);
-			Scribe_Values.Look(ref wealthMultiplier, "wealthMultiplier", 0.2f);
+			Scribe_Values.Look(ref wealthMultiplier, "wealthMultiplier", 0.1f);
 			Scribe_Values.Look(ref baseSubscriptionPrice, "baseSubscriptionPrice", 1000);
 
 			Scribe_Values.Look(ref attackChance, "attackChance", 0.02f);
@@ -316,7 +316,7 @@ namespace Universal_Trade_Hub
 			settings.deliveryTimeReductionForStuff = 0.05f;
 
 			settings.priceReductionMultiplier = 0.6f;
-			settings.wealthMultiplier = 0.2f;
+			settings.wealthMultiplier = 0.1f;
 			settings.baseSubscriptionPrice = 1000;
 
 			settings.attackChance = 0.02f;
